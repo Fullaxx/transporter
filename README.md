@@ -21,8 +21,8 @@ Once the transfer is complete, the digest is finalized and hash values are compa
 This is much more efficient than hashing the file after transfer is complete, since we only have to read/write the file once.
 
 ## Engineering
-The transporter pad is a server with a listening socket that will handle connections from beam and absorb.
-Beam will connect to tpad and relocate files from your local machine to the remote server.
+The transporter pad is a server with a listening socket that will handle connections from beam and absorb. \
+Beam will connect to tpad and relocate files from your local machine to the remote server. \
 Absorb will connect to tpad and relocate files from the remote server to your local machine.
 
 ## Usage
@@ -30,29 +30,29 @@ Start the transporter pad on a remote machine binding to 76.51.51.84:8384
 ```
 docker run -d -p 76.51.51.84:8384:8384 -v /tpad:/tpad fullaxx/transporter-pad
 ```
-Beam your files in /beam to the remote server hosting the transporter pad
+Beam your files in /local to the remote server hosting the transporter pad
 ```
-docker run -d -e TPAD="76.51.51.84:8384" -v /beam:/beam fullaxx/transporter-beam
+docker run -it -e TPAD="76.51.51.84:8384" -v /local:/beam fullaxx/transporter-beam
 ```
-Absorb your files from the remote server to /absorb in random order
+Absorb your files from the remote server to /local in random order
 ```
-docker run -d -e TPAD="76.51.51.84:8384" -v /absorb:/absorb fullaxx/transporter-absorb
+docker run -it -e TPAD="76.51.51.84:8384" -v /local:/absorb fullaxx/transporter-absorb
 ```
-Absorb your files from the remote server to /absorb oldest first
+Absorb your files from the remote server to /local oldest first
 ```
-docker run -d -e METHOD="oldest" -e TPAD="76.51.51.84:8384" -v /absorb:/absorb fullaxx/transporter-absorb
+docker run -it -e METHOD="oldest" -e TPAD="76.51.51.84:8384" -v /local:/absorb fullaxx/transporter-absorb
 ```
-Absorb your files from the remote server to /absorb newest first
+Absorb your files from the remote server to /local newest first
 ```
-docker run -d -e METHOD="newest" -e TPAD="76.51.51.84:8384" -v /absorb:/absorb fullaxx/transporter-absorb
+docker run -it -e METHOD="newest" -e TPAD="76.51.51.84:8384" -v /local:/absorb fullaxx/transporter-absorb
 ```
-Absorb your files from the remote server to /absorb largest first
+Absorb your files from the remote server to /local largest first
 ```
-docker run -d -e METHOD="largest" -e TPAD="76.51.51.84:8384" -v /absorb:/absorb fullaxx/transporter-absorb
+docker run -it -e METHOD="largest" -e TPAD="76.51.51.84:8384" -v /local:/absorb fullaxx/transporter-absorb
 ```
-Absorb your files from the remote server to /absorb smallest first
+Absorb your files from the remote server to /local smallest first
 ```
-docker run -d -e METHOD="smallest" -e TPAD="76.51.51.84:8384" -v /absorb:/absorb fullaxx/transporter-absorb
+docker run -it -e METHOD="smallest" -e TPAD="76.51.51.84:8384" -v /local:/absorb fullaxx/transporter-absorb
 ```
 
 ## Build it locally using the github repository

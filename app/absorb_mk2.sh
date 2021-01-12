@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ ! -d /absorb ]; then
+  echo "/absorb is not a directory!"
+  exit 1
+fi
+
 if [ ${METHOD} == "oldest" ]; then
   METHODARG="--oldest"
 fi
