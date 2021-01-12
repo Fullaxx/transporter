@@ -63,6 +63,6 @@ docker build -f Dockerfile.absorb.mk2 -t="fullaxx/transporter-absorb" github.com
 ```
 
 ## Known Issues
-Transporter has no built-in data confidentiality or authentication.
-Do not put this on the internet without securing the network traffic.
+Transporter has no built-in data confidentiality or authentication. \
+Do not put this on the internet without securing the network traffic. \
 There are many ways to do this including a properly configured firewall and other utilities such as [Stunnel](https://www.stunnel.org/).
