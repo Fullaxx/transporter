@@ -182,8 +182,8 @@ unsigned long gcfile_get_duration(gcfile_t *gcf)
 
 	z = gettimeofday(&timestop, NULL);
 	if(z != 0) { return 0; }
-	usec_duration = timestop.tv_usec - gcf->timestart.tv_usec;
-	usec_duration += (timestop.tv_sec - gcf->timestart.tv_sec)*1e6;
+	usec_duration = (timestop.tv_sec - gcf->timestart.tv_sec)*1e6;
+	usec_duration += (long)timestop.tv_usec - (long)gcf->timestart.tv_usec;
 
 	return usec_duration;
 }
