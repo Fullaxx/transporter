@@ -83,16 +83,16 @@ static void send_file(void *socket, char *filename)
 
 	GCFILE_INIT(&gcf);
 	z = gcfile_open(&gcf, filename, "r");
-	if(z != 0) { fprintf(stderr, "%s\n", gcfile_geterrmsg(&gcf)); return; }
+	if(z != 0) { fprintf(stderr, "%s\n", GCFILE_GETERRMSG(&gcf)); return; }
 
 	z = gcfile_enable(&gcf, TPAD_HASH_ALG);
-	if(z < 0) { fprintf(stderr, "%s\n", gcfile_geterrmsg(&gcf)); return; }
+	if(z < 0) { fprintf(stderr, "%s\n", GCFILE_GETERRMSG(&gcf)); return; }
 
 	buf = malloc(size);
 	if(!buf) { gcfile_close(&gcf); fprintf(stderr, "malloc(%lu) failed!\n", size); return; }
 
 	bytes = gcfile_read(&gcf, buf, size);
-	if(bytes != size) { gcfile_close(&gcf); free(buf); fprintf(stderr, "%s\n", gcfile_geterrmsg(&gcf)); return; }
+	if(bytes != size) { gcfile_close(&gcf); free(buf); fprintf(stderr, "%s\n", GCFILE_GETERRMSG(&gcf)); return; }
 
 	if(g_verbosity >= 1) { printf("Beaming File: %s(%ld) ... ", filename, size); }
 

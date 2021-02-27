@@ -40,7 +40,7 @@ static void put_file(zmq_reply_t *r, char *filename, void *buf, unsigned long si
 	GCFILE_INIT(&gcf);
 	z = gcfile_open(&gcf, filename, "w");
 	if(z != 0) {
-		snprintf(errmsg, sizeof(errmsg), "%s\n", gcfile_geterrmsg(&gcf));
+		snprintf(errmsg, sizeof(errmsg), "%s\n", GCFILE_GETERRMSG(&gcf));
 		tpad_error(r, __func__, errmsg);
 		return;
 	}
@@ -48,7 +48,7 @@ static void put_file(zmq_reply_t *r, char *filename, void *buf, unsigned long si
 	z = gcfile_enable(&gcf, TPAD_HASH_ALG);
 	if(z != 0) {
 		gcfile_close(&gcf);
-		snprintf(errmsg, sizeof(errmsg), "%s\n", gcfile_geterrmsg(&gcf));
+		snprintf(errmsg, sizeof(errmsg), "%s\n", GCFILE_GETERRMSG(&gcf));
 		tpad_error(r, __func__, errmsg);
 		return;
 	}
@@ -56,7 +56,7 @@ static void put_file(zmq_reply_t *r, char *filename, void *buf, unsigned long si
 	bytes = gcfile_write(&gcf, buf, size);
 	if(bytes != size) {
 		gcfile_close(&gcf);
-		snprintf(errmsg, sizeof(errmsg), "%s\n", gcfile_geterrmsg(&gcf));
+		snprintf(errmsg, sizeof(errmsg), "%s\n", GCFILE_GETERRMSG(&gcf));
 		tpad_error(r, __func__, errmsg);
 		return;
 	}

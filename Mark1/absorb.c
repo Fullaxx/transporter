@@ -120,14 +120,14 @@ static int absorb_file(char *freq)
 
 	GCFILE_INIT(&gcf);
 	z = gcfile_open(&gcf, filename, "w");
-	if(z != 0) { free(contents); fprintf(stderr, "%s\n", gcfile_geterrmsg(&gcf)); return -6; }
+	if(z != 0) { free(contents); fprintf(stderr, "%s\n", GCFILE_GETERRMSG(&gcf)); return -6; }
 
 	z = gcfile_enable(&gcf, TPAD_HASH_ALG);
-	if(z < 0) { free(contents); fprintf(stderr, "%s\n", gcfile_geterrmsg(&gcf)); return -7; }
+	if(z < 0) { free(contents); fprintf(stderr, "%s\n", GCFILE_GETERRMSG(&gcf)); return -7; }
 
 	r = gcfile_write(&gcf, contents, size);
 	free(contents);
-	if(r != size) { gcfile_close(&gcf); fprintf(stderr, "%s\n", gcfile_geterrmsg(&gcf)); return -8; }
+	if(r != size) { gcfile_close(&gcf); fprintf(stderr, "%s\n", GCFILE_GETERRMSG(&gcf)); return -8; }
 
 	hash = gcfile_get_hash(&gcf, TPAD_HASH_ALG);
 	if(g_verbosity >= 1) printf("Absorbing File: %s(%lu) ... ", filename, r);
