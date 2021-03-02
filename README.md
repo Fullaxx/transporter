@@ -3,11 +3,15 @@
 ## Base Docker Image
 [Ubuntu](https://hub.docker.com/_/ubuntu) 20.04 (x64)
 
-## Get the images from Docker Hub
+## Get the images from Docker Hub or build it locally
 ```
 docker pull fullaxx/transporter-pad
 docker pull fullaxx/transporter-beam
 docker pull fullaxx/transporter-absorb
+
+docker build -f Dockerfile.tpad.mk2   -t="fullaxx/transporter-pad"    github.com/Fullaxx/transporter
+docker build -f Dockerfile.beam.mk2   -t="fullaxx/transporter-beam"   github.com/Fullaxx/transporter
+docker build -f Dockerfile.absorb.mk2 -t="fullaxx/transporter-absorb" github.com/Fullaxx/transporter
 ```
 
 ## About this Image
@@ -53,13 +57,6 @@ docker run -it -e METHOD="largest" -e TPAD="76.51.51.84:8384" -v /local:/absorb 
 Absorb your files from the remote server to /local smallest first
 ```
 docker run -it -e METHOD="smallest" -e TPAD="76.51.51.84:8384" -v /local:/absorb fullaxx/transporter-absorb
-```
-
-## Build it locally using the github repository
-```
-docker build -f Dockerfile.tpad.mk2   -t="fullaxx/transporter-pad"    github.com/Fullaxx/transporter
-docker build -f Dockerfile.beam.mk2   -t="fullaxx/transporter-beam"   github.com/Fullaxx/transporter
-docker build -f Dockerfile.absorb.mk2 -t="fullaxx/transporter-absorb" github.com/Fullaxx/transporter
 ```
 
 ## Known Issues
