@@ -26,7 +26,7 @@ RUN apt-get update && \
 
 # ------------------------------------------------------------------------------
 # Install scripts and configuration files
-COPY app/beam_mk2.sh /app/    
+COPY --from=build /src/Mark2/app/beam.sh /app/
 COPY --from=build /src/Mark2/beam.exe /app/
 
 # ------------------------------------------------------------------------------
@@ -36,4 +36,4 @@ VOLUME /log
 
 # ------------------------------------------------------------------------------
 # Define default command
-CMD ["/app/beam_mk2.sh"]
+CMD ["/app/beam.sh"]

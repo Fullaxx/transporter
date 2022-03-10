@@ -26,7 +26,7 @@ RUN apt-get update && \
 
 # ------------------------------------------------------------------------------
 # Install scripts and configuration files
-COPY app/tpad_mk2.sh /app/    
+COPY --from=build /src/Mark2/app/tpad.sh /app/
 COPY --from=build /src/Mark2/tpad.exe /app/
 
 # ------------------------------------------------------------------------------
@@ -40,4 +40,4 @@ EXPOSE 8384
 
 # ------------------------------------------------------------------------------
 # Define default command
-CMD ["/app/tpad_mk2.sh"]
+CMD ["/app/tpad.sh"]
