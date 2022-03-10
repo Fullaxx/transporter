@@ -71,7 +71,7 @@ static int del_remote_file(char *filename, size_t size, char *filehash)
 
 	if(strcmp(status, TCMD_ERR) == 0) { print_error(g_zDELReq); return -2; }
 
-	if(g_verbosity >= 1) printf("%s\n", status);
+	if(g_verbosity >= 1) { printf("%s\n", status); }
 	return 0;
 }
 
@@ -164,7 +164,7 @@ static long req_count(void)
 	if(n == -1) { fprintf(stderr, "%s(): zmq_recv(): %s\n", __func__, strerror(errno)); return -3; }
 
 	count = atol(resp);
-	if(g_verbosity >= 2) printf("files available: %lu\n", count);
+	if(g_verbosity >= 2) { printf("files available: %lu\n", count); }
 	return count;
 }
 
@@ -196,8 +196,8 @@ int main(int argc, char *argv[])
 	zmq_close(g_zDELReq);
 	zmq_close(g_zGETReq);
 	zmq_ctx_destroy(g_zContext);
-	if(g_zGETAddr) free(g_zGETAddr);
-	if(g_zDELAddr) free(g_zDELAddr);
+	if(g_zGETAddr) { free(g_zGETAddr); }
+	if(g_zDELAddr) { free(g_zDELAddr); }
 	return 0;
 }
 
