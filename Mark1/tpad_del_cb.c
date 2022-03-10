@@ -1,6 +1,6 @@
 /*
 	Transporter is a ZMQ based file transfer utility
-	Copyright (C) 2021 Brett Kuskie <fullaxx@gmail.com>
+	Copyright (C) 2022 Brett Kuskie <fullaxx@gmail.com>
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by

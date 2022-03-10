@@ -1,5 +1,5 @@
 /*
-	Copyright (C) 2021 Brett Kuskie <fullaxx@gmail.com>
+	Copyright (C) 2022 Brett Kuskie <fullaxx@gmail.com>
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ int as_zmq_reply_send(zmq_reply_t *reply, void *buf, int len, int more)
 {
 	int n, flags=0;
 
-	if(more) flags = ZMQ_SNDMORE;
+	if(more) { flags = ZMQ_SNDMORE; }
 	n = zmq_send(reply->zSocket, buf, len, flags);
 #ifdef DEBUG
 	if(n != len) {
@@ -68,7 +68,7 @@ static void* zmq_reply_thread(void *param)
 		mpa = calloc(AS_ZMQ_MAX_PARTS, sizeof(zmq_mf_t *));
 		mpi = 0;
 		do {
-			if(mpi > 0) msgsize = zmq_msg_recv(&zMessage, reply->zSocket, 0);
+			if(mpi > 0) { msgsize = zmq_msg_recv(&zMessage, reply->zSocket, 0); }
 			thispart = mpa[mpi++] = calloc(1, sizeof(zmq_mf_t));
 			thispart->size = msgsize;
 			thispart->buf = calloc(1, msgsize);
@@ -104,8 +104,8 @@ static int as_zmq_reply_attach(zmq_reply_t *reply, void *func, void *user)
 	p->cb = func;
 	p->user_data = user;
 
-	if( pthread_create(&thr_id, NULL, &zmq_reply_thread, p) ) goto bail;
-	if( pthread_detach(thr_id) ) goto bail;
+	if( pthread_create(&thr_id, NULL, &zmq_reply_thread, p) ) { goto bail; }
+	if( pthread_detach(thr_id) ) { goto bail; }
 
 	return 0;
 
@@ -133,8 +133,8 @@ zmq_reply_t* as_zmq_reply_create(char *zSockAddr, void *func, int recv_hwm, int 
 		goto bail;
 	}
 
-	if(do_connect) r = zmq_connect(reply->zSocket, zSockAddr);
-	else		r = zmq_bind(reply->zSocket, zSockAddr);
+	if(do_connect) { r = zmq_connect(reply->zSocket, zSockAddr); }
+	else		{ r = zmq_bind(reply->zSocket, zSockAddr); }
 	if(r != 0) {
 		goto bail;
 	}
@@ -155,11 +155,11 @@ bail:
 
 void as_zmq_reply_destroy(zmq_reply_t *reply)
 {
-	if(!reply) return;
+	if(!reply) { return; }
 
 	if(reply->connected) {
 		reply->do_close = 1;
-		while(!reply->closed) usleep(1000);
+		while(!reply->closed) { usleep(1000); }
 		zmq_close(reply->zSocket);
 		zmq_ctx_term(reply->zContext);
 	}

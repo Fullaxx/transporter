@@ -1,6 +1,6 @@
 /*
 	Transporter is a ZMQ based file transfer utility
-	Copyright (C) 2021 Brett Kuskie <fullaxx@gmail.com>
+	Copyright (C) 2022 Brett Kuskie <fullaxx@gmail.com>
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -69,7 +69,7 @@ int is_regfile(const char *path, int v)
 		}
 	}
 
-	if(S_ISREG(stat_buf.st_mode)) return 1;
+	if(S_ISREG(stat_buf.st_mode)) { return 1; }
 
 	if(v) { fprintf(stderr, "%s is not a regular file!\n", path); }
 	return 0;
@@ -107,9 +107,9 @@ int file_security_check(void *filename)
 {
 	//if(!isalphanum(filename[0])) return 1;
 
-	if(strchr(filename, '/')) return 1;
+	if(strchr(filename, '/')) { return 1; }
 
-	if(strstr(filename, "..")) return 2;
+	if(strstr(filename, "..")) { return 2; }
 
 	return 0;
 }
