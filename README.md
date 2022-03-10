@@ -23,6 +23,7 @@ Mark 1 was create as a proof of concept and has a very simple code base. \
 It is bandwidth efficient, but it does have some limitations:
 * 3 server ports are required for operation
 * There is a 2GB file limit on any transfer
+
 Mark 2 was created to address these limitations, but it does appear less bandwidth efficient during transfer. \
 See the instructions for [Mark 1](https://github.com/Fullaxx/transporter/tree/master/Mark1) and [Mark 2](https://github.com/Fullaxx/transporter/tree/master/Mark2)
 
