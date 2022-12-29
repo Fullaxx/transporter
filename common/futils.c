@@ -75,8 +75,8 @@ int is_regfile(const char *path, int v)
 	return 0;
 }
 
-// Return 1 if path is a regular file
-// Return 0 if path is not a regular file
+// Return 1 if path is a directory
+// Return 0 if path is not a directory
 // Return -1 if path does not exist
 // Return -2 upon error
 int is_dir(const char *path, int v)
@@ -95,7 +95,7 @@ int is_dir(const char *path, int v)
 		}
 	}
 
-	if(S_ISDIR(stat_buf.st_mode)) return 1;
+	if(S_ISDIR(stat_buf.st_mode)) { return 1; }
 
 	if(v) { fprintf(stderr, "%s is not a directory!\n", path); }
 	return 0;
