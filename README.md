@@ -1,4 +1,4 @@
-# Transporter File Transfer Utility
+# Transporter File Transfer Utility [![Actions Status](https://github.com/Fullaxx/transporter/workflows/CI/badge.svg)](https://github.com/Fullaxx/transporter/actions)
 
 ## Base Docker Image
 [Ubuntu](https://hub.docker.com/_/ubuntu) 20.04 (x64)
