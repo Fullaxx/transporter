@@ -18,7 +18,7 @@ on:
     # The branches below must be a subset of the branches above
     branches: [ "master" ]
   schedule:
-    - cron: '45 * * * *'
+    - cron: '59 23 * * *'
 
 jobs:
   analyze:
@@ -65,9 +65,10 @@ jobs:
     # If the Autobuild fails above, remove it and uncomment the following three lines.
     # modify them (or add more) to build your code if your project, please refer to the EXAMPLE below for guidance.
 
-    - run: |
-      cd Mark1
-      ./compile.sh
+    - name: Compile the code
+      run: |
+        cd Mark1
+        ./compile.sh
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
